@@ -1,0 +1,230 @@
+@import "./components/Header/header.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  min-height: 100vh;
+  /* background: linear-gradient(#4f2d91, #000); */
+  background: #4f2d91;
+  scroll-behavior: smooth;
+}
+
+section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+section::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 10vh;
+  background: linear-gradient(to top, #000, transparent);
+  z-index: 100;
+}
+
+.cave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.moutain {
+  position: absolute;
+  top: 10%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 4;
+}
+
+// @keyframes appearMoutain {
+
+// }
+
+/* .moon {
+  z-index: 1;
+  position: absolute;
+  width: 10vw;
+  left: 56%;
+  top: 40%;
+  object-fit: cover;
+  pointer-events: none;
+  opacity: 1;
+  visibility: visible;
+} */
+
+.sun {
+  z-index: 6;
+  position: absolute;
+  top: 44%;
+  left: 58%;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #fbe0b8;
+  box-shadow: 0px 0px 53px 18px #fbc790;
+  pointer-events: visible;
+  animation: rotateSun 0.4s ease-in;
+
+  /* box-shadow: 25px 10px 0px 0px #fff */
+}
+
+.night {
+  z-index: 6;
+  position: absolute;
+  top: 43%;
+  left: 57%;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: none !important;
+  box-shadow: 25px 10px 0px 0px #fff !important;
+  pointer-events: visible;
+  animation: rotateMoon 0.4s ease-in;
+}
+
+.second {
+  position: relative;
+  padding: 100px;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  & h2 {
+    font-size: 4.5em;
+    margin-bottom: 100px;
+    color: #fff;
+  }
+
+  & p {
+    font-size: 2em;
+    color: #fff;
+    font-weight: 700;
+    width: 80%;
+  }
+}
+
+.bottom-fade {
+  width: 100%;
+  bottom: 15%;
+  height: 80vh;
+  z-index: 2;
+  float: left;
+  position: absolute;
+  background: linear-gradient(
+    to top,
+    rgba(251, 199, 144, 1) 0%,
+    rgba(251, 199, 144, 0.738) 19%,
+    rgba(251, 199, 144, 0.541) 34%,
+    rgba(251, 199, 144, 0.382) 47%,
+    rgba(251, 199, 144, 0.278) 56.5%,
+    rgba(251, 199, 144, 0.194) 65%,
+    rgba(251, 199, 144, 0.126) 73%,
+    rgba(251, 199, 144, 0.075) 80.2%,
+    rgba(251, 199, 144, 0.042) 86.1%,
+    rgba(251, 199, 144, 0.021) 91%,
+    rgba(251, 199, 144, 0.008) 95.2%,
+    rgba(251, 199, 144, 0.002) 98.2%,
+    transparent 100%
+  );
+  opacity: 1;
+  visibility: visible;
+  animation: fadeIn 0.8s ease-in;
+}
+
+.bottom-fade-night {
+  width: 100%;
+  bottom: 15%;
+  height: 80vh;
+  z-index: 2;
+  float: left;
+  position: absolute;
+  background: linear-gradient(
+    to top,
+    black 0%,
+    rgba(0, 0, 0, 0.738) 19%,
+    rgba(0, 0, 0, 0.541) 34%,
+    rgba(0, 0, 0, 0.382) 47%,
+    rgba(0, 0, 0, 0.278) 56.5%,
+    rgba(0, 0, 0, 0.194) 65%,
+    rgba(0, 0, 0, 0.126) 73%,
+    rgba(0, 0, 0, 0.075) 80.2%,
+    rgba(0, 0, 0, 0.042) 86.1%,
+    rgba(0, 0, 0, 0.021) 91%,
+    rgba(0, 0, 0, 0.008) 95.2%,
+    rgba(0, 0, 0, 0.002) 98.2%,
+    transparent 100%
+  );
+  opacity: 1;
+  visibility: visible;
+  animation: fadeInIght 0.8s ease-in;
+}
+
+.Title {
+  width: 100%;
+  position: absolute;
+  z-index: 3;
+  font-size: 5vw;
+  top: 42%;
+  left: 85%;
+  color: #fff;
+}
+
+@keyframes rotateMoon {
+  from {
+    transform: rotate(-90deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes rotateSun {
+  from {
+    transform: rotateZ(-180deg);
+    transform: rotateX(40deg) rotateY(40deg);
+  }
+  to {
+    transform: rotateZ(0deg);
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    bottom: 0%;
+    height: 60vh;
+  }
+  to {
+    bottom: 15%;
+    height: 80vh;
+  }
+}
+
+@keyframes fadeInIght {
+  from {
+    bottom: 0%;
+    height: 40vh;
+  }
+  to {
+    bottom: 15%;
+    height: 80vh;
+  }
+}

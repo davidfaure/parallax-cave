@@ -1,0 +1,134 @@
+.header {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transform: translateY(-100px);
+
+  & .logo {
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 2vw;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  & ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & li {
+      list-style: none;
+      margin-left: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-50px);
+
+      & a {
+        text-decoration: none;
+        color: #fff;
+        padding: 10px 18px;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 1vw;
+
+        &:hover {
+          background: #fff;
+          color: #4f2d91;
+          transition: all 0.2s ease-in-out;
+        }
+      }
+    }
+  }
+}
+
+.Scrollbar-Container {
+  width: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 101;
+  bottom: 2%;
+  opacity: 1;
+  visibility: visible;
+
+  & p {
+    font-size: 22px;
+    color: #fff;
+    margin: 20px 0px;
+  }
+
+  & img {
+    width: 2%;
+    animation: scrollMe 3s infinite ease-in-out;
+  }
+}
+
+@keyframes scrollMe {
+  0% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(10px);
+  }
+}
+
+.tumbler__wrapper {
+  margin-left: auto;
+  width: 60px;
+  height: 40px;
+  background-color: black;
+  border: darken(#aae2f1, 40);
+  border-radius: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 6px;
+  cursor: pointer;
+  display: flex;
+  position: relative;
+
+  & svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.tumbler {
+  position: absolute;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: transform 0.5s, background-color 0.5s;
+  will-change: transform;
+}
+
+.tumbler-night {
+  position: absolute;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  background-color: #fff;
+  transform: translateX(calc(100% - 2px));
+  transition: transform 0.5s, background-color 0.5s;
+  will-change: transform;
+}
+
+.credits {
+  display: none;
+}
+
+.sun-svg,
+.moon-svg {
+  display: none;
+}
