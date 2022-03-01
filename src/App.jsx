@@ -20,6 +20,8 @@ function App() {
   const sunRef = useRef();
   const fadeRef = useRef();
   const scrollRef = useRef();
+  const containerRef = useRef();
+  const flipRef = useRef();
 
 
   const timeline = useRef();
@@ -28,34 +30,56 @@ function App() {
   const [intro, setIntro] = useState(true);
 
   useEffect(() => {
-    timeline.current = gsap.timeline({
-      defaults: {
-        ease: "power2",
-        duration: 0.5,
-      }
-    }).from(sunRef.current, {
-      autoAlpha: 0,
-      top: "100%",
-    })
-      .from(mountainRef.current, {
-        top: "5%"
-      }, "<") // at start of the previous one
-      .from(caveRef.current, {
-        top: "-2%",
-      }, "<")
-      .fromTo(fadeRef.current, {
-        bottom: "5%",
-      }, {
-       bottom: "15%", 
-      }, "<")
-      .fromTo(scrollRef.current, {
-        autoAlpha: 0,
-        y: 100,
-      }, {
-        autoAlpha: 1,
-        y: 0,
-      }, "<")
-      .eventCallback("onComplete", () => setIntro(false));
+    setTimeout(() => {
+
+      timeline.current = gsap.timeline({
+        defaults: {
+          ease: "power2",
+        }
+      })
+        .to(flipRef.current, {
+          y: 0,
+          duration: 1.2
+        })
+        .to(containerRef.current, {
+          autoAlpha: 0, }, "-=0.1")
+        .to(flipRef.current,
+          {
+            height: 0,
+            duration: 1.2
+          })
+        .to(containerRef.current, { display: 'none' }, "<")
+        .from(sunRef.current, {
+          autoAlpha: 0,
+          top: "100%",
+          duration: 1,
+        }, "<")
+        .from(mountainRef.current, {
+          top: "5%",
+          duration: 0.5,
+        }, "<") // at start of the previous one
+        .from(caveRef.current, {
+          top: "-2%",
+          duration: 0.5,
+        }, "<")
+        .fromTo(fadeRef.current, {
+          bottom: "5%",
+          duration: 0.5,
+        }, {
+          bottom: "15%", 
+          duration: 0.5,
+        }, "<")
+        .fromTo(scrollRef.current, {
+          autoAlpha: 0,
+          y: 100,
+          duration: 0.5,
+        }, {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.5,
+        }, "<")
+        .eventCallback("onComplete", () => setIntro(false));
+    }, 2000)
   }, []);
 
   useEffect(() => {
@@ -103,6 +127,7 @@ function App() {
     })
       .to(caveRef.current, {
         top: "5% ",
+        scale: "1.5",
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top, top",
@@ -158,6 +183,10 @@ function App() {
 
   return (
     <div className="App">
+      <div className="load-container" ref={containerRef}>
+        <h1>LOADING...</h1>
+      </div>
+      <div className="flip2" ref={flipRef} />
       <Header day={day} setDay={setDay} />
       <section ref={sectionRef} >
         <img src={cave} alt="cave" className="cave" draggable="false" ref={caveRef} />

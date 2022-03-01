@@ -12,17 +12,22 @@ const Header = ({ day, setDay }) => {
 
   useEffect(() => {
 
-    tl.current = gsap.timeline({ ease: "none" })
-      .to(headerRef.current, {
-        y: 0,
-        duration: 0.8
-      })
-      .to(itemNav("li"), {
-        y: 0,
-        autoAlpha: 1,
-        stagger: 0.2,
-        duration: 0.4
-      }, "<")
+    setTimeout(() => {
+
+      tl.current = gsap.timeline({ ease: "none" })
+        .to(headerRef.current, {
+          y: 0,
+          duration: 0.8
+        })
+        .to(itemNav("li"), {
+          y: 0,
+          autoAlpha: 1,
+          stagger: 0.2,
+          duration: 0.4
+        }, "<")
+
+    }, 4500)
+
 
   }, []);
 
